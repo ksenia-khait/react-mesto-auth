@@ -5,12 +5,11 @@ import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup"
 import Footer from './Footer';
 
-
 function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
-    const [selectedCard, setSelectedCard] = useState(false);
+    const [selectedCard, setSelectedCard] = useState(null);
 
     function handleEditProfileClick() {
         setIsEditProfilePopupOpen(true);
@@ -32,12 +31,11 @@ function App() {
         setIsEditProfilePopupOpen(false);
         setIsAddPlacePopupOpen(false);
         setIsEditAvatarPopupOpen(false);
-        setSelectedCard(false);
+        setSelectedCard(null);
     }
 
     return (
         <>
-
             <div className="page">
                 <Header/>
                 <Main
@@ -50,7 +48,8 @@ function App() {
             </div>
 
             <PopupWithForm title={"Редактировать профиль"} name={"profile"} isOpen={isEditProfilePopupOpen}
-                           onClose={closeAllPopups}>
+                           onClose={closeAllPopups} buttonText={'Сохранить'}>
+
                 <input type="text"
                        className="form__name profile-form__name form__input"
                        name="name"
@@ -58,6 +57,7 @@ function App() {
                        placeholder="Имя"
                        minLength="2"
                        maxLength="40"
+
                        required
                 />
                 <span id="profile-name-error" className="error"></span>
@@ -70,12 +70,12 @@ function App() {
                     minLength="2"
                     maxLength="200"
                     required
-
                 />
                 <span id="profile-capture-error" className="error"></span>
+
             </PopupWithForm>
             <PopupWithForm title={"Новое место"} name={"new-item"} isOpen={isAddPlacePopupOpen}
-                           onClose={closeAllPopups}>
+                           onClose={closeAllPopups} buttonText={'Сохранить'}>
                 <input
                     type="text"
                     className="form__name new-item-form__name form__input"
@@ -97,10 +97,10 @@ function App() {
                 />
                 <span id="image-link-error" className="error"></span>
             </PopupWithForm>
-            <PopupWithForm title={"Вы уверены?"} name={"image"} onClose={closeAllPopups}>
+            <PopupWithForm title={"Вы уверены?"} name={"image"} onClose={closeAllPopups} buttonText={"Да"}>
             </PopupWithForm>
             <PopupWithForm title={"Обновить аватар?"} name={"avatar"} isOpen={isEditAvatarPopupOpen}
-                           onClose={closeAllPopups}>
+                           onClose={closeAllPopups} buttonText={"Да"}>
                 <input
                     type="url"
                     className="form__capture new-item-form__capture form__input "

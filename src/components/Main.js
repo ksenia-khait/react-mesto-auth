@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {api} from '../utils/Api.js'
 import Card from "./Card.js";
 
-
 function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
 
     const [userName, setUserName] = useState('');
@@ -36,7 +35,6 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
             .catch(err => console.log(err))
     }, [])
 
-
     return (
         <main className="content">
 
@@ -58,7 +56,6 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
                 <button className="intro__add-button" onClick={onAddPlace}></button>
             </section>
 
-
             <section className="grid">
                 {
                     cards.map((card) => {
@@ -68,8 +65,6 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
                     })
                 }
             </section>
-
-
         </main>
     );
 }
