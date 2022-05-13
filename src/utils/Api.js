@@ -25,29 +25,29 @@ class Api {
             .then(this._checkResponse)
     }
 
-    // editProfile(name, about) {
-    //     return fetch(`${this._baseUrl}/users/me`, {
-    //         method: "PATCH",
-    //         headers: this._headers,
-    //         body: JSON.stringify({
-    //             name,
-    //             about
-    //         })
-    //     })
-    //         .then(this._checkResponse)
-    // }
-    //
-    // addCard(name, link) {
-    //     return fetch(`${this._baseUrl}/cards`, {
-    //         method: "POST",
-    //         headers: this._headers,
-    //         body: JSON.stringify({
-    //             name,
-    //             link
-    //         })
-    //     })
-    //         .then(this._checkResponse)
-    // }
+    editProfile(name, about) {
+        return fetch(`${this._baseUrl}/users/me`, {
+            method: "PATCH",
+            headers: this._headers,
+            body: JSON.stringify({
+                name,
+                about
+            })
+        })
+            .then(this._checkResponse)
+    }
+
+    addCard(name, link) {
+        return fetch(`${this._baseUrl}/cards`, {
+            method: "POST",
+            headers: this._headers,
+            body: JSON.stringify({
+                name,
+                link
+            })
+        })
+            .then(this._checkResponse)
+    }
 
     deleteCard(id) {
         return fetch(`${this._baseUrl}/cards/${id}`, {
@@ -78,7 +78,7 @@ class Api {
             method: "PATCH",
             headers: this._headers,
             body: JSON.stringify({
-                avatar: avatar.src
+                avatar
             })
         })
             .then(this._checkResponse)
