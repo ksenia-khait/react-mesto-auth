@@ -1,23 +1,64 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import PopupWithForm from "./PopupWithForm";
 import {CurrentUserContext} from "../contexts/CurrentUserContext";
 
 function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
-    const currentUser = useContext(CurrentUserContext);
+    const currentUser = React.useContext(CurrentUserContext);
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
 
+    // const [values, setValues] = useState({ name: '', description: '' })
+    //
+    // const handleChange = (event) => {
+    //     const { name } = event.target
+    //     const { description } = event.target
+    //     setValues((prev) => ({
+    //         ...prev,
+    //         [name]: name,
+    //         [description]: description
+    //     }))
+    // }
+
+    const [nameError, setNameError] = useState('');
+    const [descriptionError, setDescriptionError] = useState('');
+    const [formValid, setFormValid] = useState(false)
+
+    useEffect(() => {
+        if (nameError || descriptionError) {
+            setFormValid(false)
+        } else {
+            setFormValid(true)
+        }
+    }, [nameError, descriptionError])
+
     function handleNameChange(e) {
         setName(e.target.value);
+
+        if (e.target.value !== '') {
+            setNameError('')
+            if(e.target.value.length < 2 ) {
+                setNameError('Поле должно содержать не менее 2 знаков')
+            }
+        } else {
+            setNameError('Поле не может быть пустым')
+        }
     }
 
     function handleDescriptionChange(e) {
         setDescription(e.target.value);
+        if (e.target.value !== '') {
+            setDescriptionError('')
+            if(e.target.value.length < 2 ) {
+                setDescriptionError('Поле должно содержать не менее 2 знаков')
+            }
+        } else {
+            setDescriptionError('Поле не может быть пустым')
+        }
     }
 
     function handleSubmit(e) {
         e.preventDefault();
-        onUpdateUser(name, description );
+        onUpdateUser(name, description);
     }
 
     useEffect(() => {
@@ -42,20 +83,22 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
                    maxLength="40"
                    required
                    onChange={handleNameChange}
+                   value={name}
             />
-            <span id="profile-name-error" className="error"></span>
+            <div id="profile-name-error" className="error">{nameError}</div>
             <input
                 type="text"
                 className="form__capture profile-form__capture form__input"
-                name="capture"
+                name="description"
                 id="profile-capture"
                 placeholder="О себе"
                 minLength="2"
                 maxLength="200"
                 required
                 onChange={handleDescriptionChange}
+                value={description}
             />
-            <span id="profile-capture-error" className="error"></span>
+            <div id="profile-capture-error" className="error">{descriptionError}</div>
         </PopupWithForm>
     )
 }
