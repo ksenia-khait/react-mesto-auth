@@ -7,14 +7,14 @@ function PopupWithForm({ formValid, title, name,  isOpen, onClose, children, but
             <div className="popup__container container">
                 <button className="popup__close" id="cross" onClick={onClose}></button>
                 <p className="popup__text">{title}</p>
-                <form className={`form popup__form_${name}`} noValidate name="form" onSubmit={onSubmit} >
+                <form className={`form popup__form_${name}`}  name="form" onSubmit={onSubmit} >
                     {children}
                     <button
                         type="submit"
                         className="form__button"
                         name="button"
                         onClick={onClose}
-                        disabled={!formValid}
+                        // disabled={!formValid}
                     >{buttonText}</button>
                 </form>
             </div>

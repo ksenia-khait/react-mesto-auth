@@ -15,18 +15,9 @@ function App() {
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
     const [selectedCard, setSelectedCard] = useState(null);
-    const [currentUser, setCurrentUser] = useState([]);
+    const [currentUser, setCurrentUser] = useState({});
     const [cards, setCards] = useState([]);
-    const [isFormValid, setIsFormValid] = useState(false)
-    const [formValid, setFormValid] = useState(false)
 
-    useEffect(() => {
-        if (nameError || descriptionError) {
-            setFormValid(false)
-        } else {
-            setFormValid(true)
-        }
-    }, [nameError, descriptionError])
 
     useEffect(() => {
         api.getProfile()
@@ -35,7 +26,6 @@ function App() {
             })
             .catch(err => console.log(err))
     }, []);
-
 
     useEffect(() => {
         api.getInitialCards()
@@ -143,6 +133,7 @@ function App() {
                                name={"image"}
                                onClose={closeAllPopups}
                                buttonText={"Да"}>
+
 
                 </PopupWithForm>
                 <EditAvatarPopup isOpen={isEditAvatarPopupOpen}

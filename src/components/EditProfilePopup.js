@@ -7,29 +7,25 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
 
-    // const [values, setValues] = useState({ name: '', description: '' })
+    // const [values, setValues] = useState({name: '', description: ''})
     //
-    // const handleChange = (event) => {
-    //     const { name } = event.target
-    //     const { description } = event.target
+    // function handleChange(e) {
+    //     const {name, value} = e.target
     //     setValues((prev) => ({
     //         ...prev,
-    //         [name]: name,
-    //         [description]: description
+    //         [name]: value
     //     }))
     // }
 
+    // useEffect(() => {
+    //     if (nameError || descriptionError) {
+    //         setFormValid(false)
+    //     } else {
+    //         setFormValid(true)
+    //     }
+    // }, [nameError, descriptionError])
     const [nameError, setNameError] = useState('');
     const [descriptionError, setDescriptionError] = useState('');
-    const [formValid, setFormValid] = useState(false)
-
-    useEffect(() => {
-        if (nameError || descriptionError) {
-            setFormValid(false)
-        } else {
-            setFormValid(true)
-        }
-    }, [nameError, descriptionError])
 
     function handleNameChange(e) {
         setName(e.target.value);
@@ -59,12 +55,14 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
     function handleSubmit(e) {
         e.preventDefault();
         onUpdateUser(name, description);
+        setName(currentUser.name);
+        setDescription(currentUser.description)
     }
 
     useEffect(() => {
         setName(currentUser.name);
         setDescription(currentUser.description)
-    }, []);
+    }, [isOpen, currentUser]);
 
     return (
         <PopupWithForm title={"Редактировать профиль"}
