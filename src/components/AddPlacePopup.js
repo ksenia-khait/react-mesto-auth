@@ -6,7 +6,7 @@ function AddPlacePopup({isOpen, onClose, onAddPlace}) {
     const [values, setValues] = useState({name: '', src: ''})
     // const [nameError, setNameError] = useState('');
     // const [urlError, setUrlError] = useState('');
-
+    //
     // const [isValid, setIsValid] = useState({name: true})
 
     function handleChange(e) {

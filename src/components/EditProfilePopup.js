@@ -6,24 +6,6 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
     const currentUser = React.useContext(CurrentUserContext);
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
-
-    // const [values, setValues] = useState({name: '', description: ''})
-    //
-    // function handleChange(e) {
-    //     const {name, value} = e.target
-    //     setValues((prev) => ({
-    //         ...prev,
-    //         [name]: value
-    //     }))
-    // }
-
-    // useEffect(() => {
-    //     if (nameError || descriptionError) {
-    //         setFormValid(false)
-    //     } else {
-    //         setFormValid(true)
-    //     }
-    // }, [nameError, descriptionError])
     const [nameError, setNameError] = useState('');
     const [descriptionError, setDescriptionError] = useState('');
 
@@ -56,12 +38,12 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
         e.preventDefault();
         onUpdateUser(name, description);
         setName(currentUser.name);
-        setDescription(currentUser.description)
+        setDescription(currentUser.about)
     }
 
     useEffect(() => {
         setName(currentUser.name);
-        setDescription(currentUser.description)
+        setDescription(currentUser.about)
     }, [isOpen, currentUser]);
 
     return (
@@ -81,7 +63,7 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
                    maxLength="40"
                    required
                    onChange={handleNameChange}
-                   value={name}
+                   value={name || ''}
             />
             <div id="profile-name-error" className="error">{nameError}</div>
             <input
@@ -94,11 +76,27 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
                 maxLength="200"
                 required
                 onChange={handleDescriptionChange}
-                value={description}
+                value={description || ''}
             />
             <div id="profile-capture-error" className="error">{descriptionError}</div>
         </PopupWithForm>
     )
 }
+// const [values, setValues] = useState({name: '', description: ''})
+//
+// function handleChange(e) {
+//     const {name, value} = e.target
+//     setValues((prev) => ({
+//         ...prev,
+//         [name]: value
+//     }))
+// }
 
+// useEffect(() => {
+//     if (nameError || descriptionError) {
+//         setFormValid(false)
+//     } else {
+//         setFormValid(true)
+//     }
+// }, [nameError, descriptionError])
 export default EditProfilePopup
