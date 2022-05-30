@@ -1,0 +1,33 @@
+.info-tool-tip {
+
+}
+
+.popup__container_type_info-tool-tip {
+display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+}
+
+.popup__tooltip-img {
+    width: 120px;
+    height: 120px;
+    margin: 60px auto 32px;
+}
+
+.popup__text {
+    margin: 0 auto 60px;
+    font-size: 24px;
+    font-weight: 900;
+    max-width: 270px;
+}
+
+@media all and (max-width: 900px) {
+    .popup__text {
+        max-width: 223px;
+        font-size: 20px;
+        margin-bottom: 50px;
+    }
+
+}

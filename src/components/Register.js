@@ -4,7 +4,8 @@ import {Link} from 'react-router-dom'
 
 function Register({title, buttonText, onRegister}) {
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('')
+    const [password, setPassword] = useState('');
+
 
     function handleEmailChange(e) {
         setEmail(e.target.value)
@@ -46,9 +47,7 @@ function Register({title, buttonText, onRegister}) {
                 type="submit"
                 className="auth-form__button"
                 name="button"
-
-            >{buttonText}
-            </button>
+            >{buttonText}</button>
 
             <div className="auth-form__register-caption">
                 <p className="register__login-link">Уже зарегистрированы?&nbsp;</p>

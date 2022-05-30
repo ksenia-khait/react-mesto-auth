@@ -21,6 +21,8 @@ function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+    const [isSignUpPopupOpen, setIsSignUpPopupOpen] = useState(false);
+
 
     const [selectedCard, setSelectedCard] = useState(null);
     const [currentUser, setCurrentUser] = useState({});
@@ -109,32 +111,38 @@ function App() {
         setIsAddPlacePopupOpen(false);
         setIsEditAvatarPopupOpen(false);
         setSelectedCard(null);
+        setIsSignUpPopupOpen(false)
     }
-
-
 
     const [email, setEmail] = useState('');
     const [isSignUp, setIsSignup] = useState(false);
 
     const history = useHistory();
 
-    function handleRegister(email, password) {
-        return register(email, password)
+    function handleRegister(password, email) {
+        return register(password, email)
             .then(res => {
                 if(res.data._id) {
                     setIsSignup(true);
+                    setIsSignUpPopupOpen(true)
+                    setTimeout(() => {
+                        setIsSignUpPopupOpen(false);
+                    }, 2000);
                     history.push('/sign-in');
                 } else {
                     setIsSignup(false);
+                    setIsSignUpPopupOpen(true)
                 }
             })
             .catch((err) => {
-                setIsSignup(false)
+                console.log(err.message)
+                setIsSignup(false);
+                setIsSignUpPopupOpen(true)
             })
     }
 
-    function handleLogin(email, password) {
-        return authorize(email, password)
+    function handleLogin(password, email) {
+        return authorize(password, email)
             .then(data => {
                 localStorage.setItem('jwt', data.token);
                 checkToken();
@@ -142,12 +150,13 @@ function App() {
             .catch((err) => {
                 console.log(err.message);
                 setIsSignup(false);
+                setIsSignUpPopupOpen(true);
             })
     }
 
 
     function checkToken() {
-        if (localStorage.getItem('jwt')) {
+        if(localStorage.getItem('jwt')) {
             let token = localStorage.getItem('jwt');
             getContent(token)
                 .then((res) => {
@@ -180,7 +189,7 @@ function App() {
         <CurrentUserContext.Provider value={currentUser}>
             <div className="page">
 
-                <Header onSignOut={handleSignOut} />
+                <Header onSignOut={handleSignOut} email={email} isloggedIn={isLoggedIn}/>
 
                 <Switch>
                     <ProtectedRoute exact path='/' isLoggedIn={isLoggedIn}>
@@ -207,8 +216,14 @@ function App() {
 
                 <Footer/>
             </div>
-            <InfoTooltip/>
-            <InfoTooltip/>
+
+            {isSignUpPopupOpen &&
+                <InfoTooltip
+                onClose={closeAllPopups}
+                isOpen={isSignUpPopupOpen}
+                isSignUp={isSignUp}/>
+            }
+
             <EditProfilePopup isOpen={isEditProfilePopupOpen}
                               onClose={closeAllPopups}
                               onUpdateUser={handleUpdateUser}/>
