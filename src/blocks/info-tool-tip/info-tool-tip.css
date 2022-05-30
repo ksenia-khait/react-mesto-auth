@@ -2,8 +2,8 @@
 
 }
 
-.popup__container_type_info-tool-tip {
-display: flex;
+.popup__tooltip-container {
+    display: flex;
     flex-direction: column;
     align-content: center;
     justify-content: center;
@@ -29,5 +29,4 @@ display: flex;
         font-size: 20px;
         margin-bottom: 50px;
     }
-
 }

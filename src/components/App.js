@@ -214,12 +214,19 @@ function App() {
                 <Footer/>
             </div>
 
-            {isSignUpPopupOpen &&
+
                 <InfoTooltip
                     onClose={closeAllPopups}
                     isOpen={isSignUpPopupOpen}
                     isSignUp={isSignUp}/>
-            }
+
+
+            {/*{isSignUpPopupOpen &&*/}
+            {/*    <InfoTooltip*/}
+            {/*        onClose={closeAllPopups}*/}
+            {/*        isOpen={isSignUpPopupOpen}*/}
+            {/*        isSignUp={isSignUp}/>*/}
+            {/*}*/}
 
             <EditProfilePopup isOpen={isEditProfilePopupOpen}
                               onClose={closeAllPopups}
