@@ -1,5 +1,5 @@
 import React, {useEffect, useState,} from "react";
-import { Switch, Route, useHistory } from "react-router-dom";
+import {Switch, Route, useHistory} from "react-router-dom";
 import {api} from "../utils/Api";
 import {CurrentUserContext} from "../contexts/CurrentUserContext";
 import Header from './Header';
@@ -16,13 +16,11 @@ import ProtectedRoute from "./ProtectedRoute";
 import InfoTooltip from "./InfoTooltip";
 import {register, authorize, getContent} from "../utils/auth"
 
-
 function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
     const [isSignUpPopupOpen, setIsSignUpPopupOpen] = useState(false);
-
 
     const [selectedCard, setSelectedCard] = useState(null);
     const [currentUser, setCurrentUser] = useState({});
@@ -122,7 +120,7 @@ function App() {
     function handleRegister(password, email) {
         return register(password, email)
             .then(res => {
-                if(res.data._id) {
+                if (res.data._id) {
                     setIsSignup(true);
                     setIsSignUpPopupOpen(true)
                     setTimeout(() => {
@@ -154,9 +152,8 @@ function App() {
             })
     }
 
-
     function checkToken() {
-        if(localStorage.getItem('jwt')) {
+        if (localStorage.getItem('jwt')) {
             let token = localStorage.getItem('jwt');
             getContent(token)
                 .then((res) => {
@@ -172,7 +169,7 @@ function App() {
     }, []);
 
     useEffect(() => {
-        if (isLoggedIn) {
+        if(isLoggedIn) {
             history.push('/')
         }
     }, [isLoggedIn]);
@@ -219,9 +216,9 @@ function App() {
 
             {isSignUpPopupOpen &&
                 <InfoTooltip
-                onClose={closeAllPopups}
-                isOpen={isSignUpPopupOpen}
-                isSignUp={isSignUp}/>
+                    onClose={closeAllPopups}
+                    isOpen={isSignUpPopupOpen}
+                    isSignUp={isSignUp}/>
             }
 
             <EditProfilePopup isOpen={isEditProfilePopupOpen}
