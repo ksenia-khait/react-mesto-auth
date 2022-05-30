@@ -237,8 +237,8 @@ function App() {
                            name={"image"}
                            onClose={closeAllPopups}
                            buttonText={"Да"}>
-
             </PopupWithForm>
+
             <EditAvatarPopup isOpen={isEditAvatarPopupOpen}
                              onClose={closeAllPopups}
                              onUpdateAvatar={handleUpdateAvatar}/>
