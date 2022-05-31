@@ -15,6 +15,3 @@ function InfoTooltip({ isOpen, onClose,  isSignUp }) {
 }
 
 export default InfoTooltip;
-
-// <div className={`popup popup_type_tooltip ${isOpen ? "popup_opened" : " "}`}>
-// <div className={`popup popup_type_tooltip popup_opened`}>

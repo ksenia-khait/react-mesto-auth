@@ -20,7 +20,7 @@ function Login({ title, buttonText, onLogin }) {
     return (
         <div className="auth__container">
             <p className="auth__title">{title}</p>
-            <form className="auth-form" name="form" onSubmit={handleSubmit}>
+            <form className="auth-form"  onSubmit={handleSubmit}>
                 <input
                     className="auth-form__email auth-form__input"
                     type="email"

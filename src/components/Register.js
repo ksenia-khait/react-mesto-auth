@@ -21,7 +21,7 @@ function Register({title, buttonText, onRegister}) {
     return (
         <div className="auth__container">
             <p className="auth__title">{title}</p>
-            <form className="auth-form" name="form" onSubmit={handleSubmit}>
+            <form className="auth-form"  onSubmit={handleSubmit}>
                 <input
                     className="auth-form__email auth-form__input"
                     type="email"
@@ -45,7 +45,6 @@ function Register({title, buttonText, onRegister}) {
                     name="button"
                 >{buttonText}</button>
             </form>
-
 
             <div className="auth-form__register-caption">
                 <p className="register__login-link">Уже зарегистрированы?&nbsp;</p>

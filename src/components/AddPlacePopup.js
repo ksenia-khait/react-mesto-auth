@@ -4,10 +4,6 @@ import PopupWithForm from "./PopupWithForm";
 function AddPlacePopup({isOpen, onClose, onAddPlace}) {
 
     const [values, setValues] = useState({name: '', src: ''})
-    // const [nameError, setNameError] = useState('');
-    // const [urlError, setUrlError] = useState('');
-    //
-    // const [isValid, setIsValid] = useState({name: true})
 
     function handleChange(e) {
         const {name, value} = e.target
@@ -15,33 +11,17 @@ function AddPlacePopup({isOpen, onClose, onAddPlace}) {
             ...prev,
             [name]: value
         }))
-
-        // if (e.target.values !== '') {
-        //     setNameError('')
-        //     if(e.target.value.length < 2 ) {
-        //         setNameError('Поле должно содержать не менее 2 знаков')
-        //     }
-        // } else {
-        //     setNameError('Поле не может быть пустым')
-        // }
-        // if (e.target.value !== '') {
-        //     setUrlError('')
-        //     if(e.target.value.length < 2 ) {
-        //         setUrlError('Поле должно содержать не менее 2 знаков')
-        //     }
-        // } else {
-        //     setUrlError('Поле не может быть пустым')
-        // }
     }
-
-    useEffect(() => {
-        setValues({name: '', src: ''});
-    }, [isOpen])
 
     function handleSubmit(e) {
         e.preventDefault(e);
         onAddPlace(values.name, values.src);
+
     }
+
+    useEffect(() => {
+        setValues({name: '', src: ''});
+    }, [])
 
     return (
         <PopupWithForm title={"Новое место"}
@@ -62,7 +42,6 @@ function AddPlacePopup({isOpen, onClose, onAddPlace}) {
                 placeholder="Название"
                 required
                 onChange={handleChange}
-
             />
             <span id="card-name-error" className="error"></span>
             <input

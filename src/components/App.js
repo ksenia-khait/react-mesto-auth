@@ -27,6 +27,10 @@ function App() {
     const [cards, setCards] = useState([]);
 
     const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [email, setEmail] = useState('');
+    const [isSignUp, setIsSignup] = useState(false);
+
+    const history = useHistory();
 
     useEffect(() => {
         api.getProfile()
@@ -42,18 +46,6 @@ function App() {
             .catch(err => console.log(err))
     }, [])
 
-    function handleCardLike(card) {
-        const isLiked = card.likes.some(i => i._id === currentUser._id);
-        const changeLikeCardStatus = !isLiked
-            ? api.addLike(card._id)
-            : api.deleteLike(card._id)
-        changeLikeCardStatus
-            .then((newCard) => {
-                setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-            })
-            .catch(err => console.log(err))
-    }
-
     function handleUpdateUser(name, about) {
         api.editProfile(name, about)
             .then((item) => {
@@ -63,10 +55,10 @@ function App() {
             .catch(err => console.log(err))
     }
 
-    function handleCardDelete(card) {
-        api.deleteCard(card._id)
-            .then(() => {
-                setCards((cards) => cards.filter((c) => c._id !== card._id));
+    function handleAddPlaceSubmit(name, link) {
+        api.addCard(name, link)
+            .then((newCard) => {
+                setCards([newCard, ...cards])
             })
             .catch(err => console.log(err))
     }
@@ -80,10 +72,22 @@ function App() {
             .catch(err => console.log(err))
     }
 
-    function handleAddPlaceSubmit(name, link) {
-        api.addCard(name, link)
+    function handleCardLike(card) {
+        const isLiked = card.likes.some(i => i._id === currentUser._id);
+        const changeLikeCardStatus = !isLiked
+            ? api.addLike(card._id)
+            : api.deleteLike(card._id)
+        changeLikeCardStatus
             .then((newCard) => {
-                setCards([newCard, ...cards])
+                setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+            })
+            .catch(err => console.log(err))
+    }
+
+    function handleCardDelete(card) {
+        api.deleteCard(card._id)
+            .then(() => {
+                setCards((cards) => cards.filter((c) => c._id !== card._id));
             })
             .catch(err => console.log(err))
     }
@@ -111,11 +115,6 @@ function App() {
         setSelectedCard(null);
         setIsSignUpPopupOpen(false)
     }
-
-    const [email, setEmail] = useState('');
-    const [isSignUp, setIsSignup] = useState(false);
-
-    const history = useHistory();
 
     function handleRegister(password, email) {
         return register(password, email)
@@ -209,7 +208,6 @@ function App() {
                     <Route path='/sign-in'>
                         <Login title={'Вход'} onLogin={handleLogin} buttonText={'Войти'}/>
                     </Route>
-
                 </Switch>
 
                 <Footer/>
