@@ -28,7 +28,6 @@ function Login({ title, buttonText, onLogin }) {
                     required
                     name='email'
                     onChange={handleEmailChange}
-
                 />
                 <input
                     className=" auth-form__password auth-form__input"
@@ -38,16 +37,13 @@ function Login({ title, buttonText, onLogin }) {
                     name='password'
                     onChange={handlePasswordChange}
                 />
-
+                <button
+                    type="submit"
+                    className="auth-form__button"
+                    name="button"
+                >{buttonText}
+                </button>
             </form>
-            <button
-                type="submit"
-                className="auth-form__button"
-                name="button"
-
-            >{buttonText}
-            </button>
-
         </div>
     );
 }

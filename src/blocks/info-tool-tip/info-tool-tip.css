@@ -1,5 +1,22 @@
-.info-tool-tip {
+.tooltip {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    overflow-y: scroll;
+    background-color: rgba(0, 0, 0, 0.5);
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.5s, opacity 0.5s linear;
+    display: flex;
+    z-index: 2;
+}
 
+.tooltip_opened {
+    visibility: visible;
+    opacity: 1;
 }
 
 .popup__tooltip-container {
@@ -8,6 +25,16 @@
     align-content: center;
     justify-content: center;
     justify-items: center;
+    width: 430px;
+    background-color: white;
+    border-radius: 10px;
+    position: relative;
+}
+
+@media all and (max-width: 900px) {
+    .popup__tooltip-container {
+        max-width: 282px;
+    }
 }
 
 .popup__tooltip-img {
@@ -16,7 +43,7 @@
     margin: 60px auto 32px;
 }
 
-.popup__text {
+.popup__tooltip-text {
     margin: 0 auto 60px;
     font-size: 24px;
     font-weight: 900;

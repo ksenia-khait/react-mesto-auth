@@ -14,7 +14,7 @@
 }
 
 .auth-form {
-    margin-bottom: 216px;
+    margin-bottom: 0;
 }
 
 .auth-form__input {
@@ -28,7 +28,7 @@
 }
 
 .auth-form__input:last-of-type {
-    margin-bottom: 0;
+    margin-bottom: 216px;
 }
 
 .auth-form__register-caption {

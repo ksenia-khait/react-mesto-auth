@@ -9,10 +9,21 @@
     justify-content: space-between;
 }
 
+.header__content {
+    display: flex;
+}
+
+.header__email {
+    font-weight: 500;
+    color: #FFFFFF;
+    font-size: 18px;
+    margin: 0 24px 0 0;
+}
+
 .header__link {
     text-decoration: none;
-    color: #FFFFFF;
-    font-size: 22px;
+    color: #A9A9A9;
+    font-size: 18px;
 }
 
 @media all and (max-width: 1279px) {

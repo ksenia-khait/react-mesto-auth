@@ -144,6 +144,7 @@ function App() {
             .then(data => {
                 localStorage.setItem('jwt', data.token);
                 checkToken();
+                history.push('/')
             })
             .catch((err) => {
                 console.log(err.message);
@@ -169,7 +170,7 @@ function App() {
     }, []);
 
     useEffect(() => {
-        if(isLoggedIn) {
+        if (isLoggedIn) {
             history.push('/')
         }
     }, [isLoggedIn]);
@@ -214,19 +215,10 @@ function App() {
                 <Footer/>
             </div>
 
-
-                <InfoTooltip
-                    onClose={closeAllPopups}
-                    isOpen={isSignUpPopupOpen}
-                    isSignUp={isSignUp}/>
-
-
-            {/*{isSignUpPopupOpen &&*/}
-            {/*    <InfoTooltip*/}
-            {/*        onClose={closeAllPopups}*/}
-            {/*        isOpen={isSignUpPopupOpen}*/}
-            {/*        isSignUp={isSignUp}/>*/}
-            {/*}*/}
+            <InfoTooltip
+                onClose={closeAllPopups}
+                isOpen={isSignUpPopupOpen}
+                isSignUp={isSignUp}/>
 
             <EditProfilePopup isOpen={isEditProfilePopupOpen}
                               onClose={closeAllPopups}
