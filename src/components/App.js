@@ -142,7 +142,8 @@ function App() {
         return authorize(password, email)
             .then(data => {
                 localStorage.setItem('jwt', data.token);
-                checkToken();
+                setIsSignup(true);
+                // checkToken();
                 history.push('/')
             })
             .catch((err) => {

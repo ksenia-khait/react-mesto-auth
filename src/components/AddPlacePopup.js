@@ -16,7 +16,6 @@ function AddPlacePopup({isOpen, onClose, onAddPlace}) {
     function handleSubmit(e) {
         e.preventDefault(e);
         onAddPlace(values.name, values.src);
-
     }
 
     useEffect(() => {
