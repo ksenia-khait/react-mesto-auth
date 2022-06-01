@@ -142,10 +142,11 @@ function App() {
         return authorize(password, email)
             .then(data => {
                 localStorage.setItem('jwt', data.token);
+                setEmail(email);
                 setIsSignup(true);
-                // checkToken();
                 history.push('/')
             })
+
             .catch((err) => {
                 console.log(err.message);
                 setIsSignup(false);
